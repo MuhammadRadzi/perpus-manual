@@ -20,7 +20,6 @@ $db = $database->connect();
 $buku = new Buku($db);
 
 $semuaBuku = $buku->semua();
-// $bukuAndrea = $buku->bukuAndrea();
 ?>
 
 <!DOCTYPE html>
@@ -36,9 +35,11 @@ $semuaBuku = $buku->semua();
 <body>
     <h1>Perpustakaan</h1>
     <p>
-        <a href="tambah.php">Tambah</a>
+        <a href="tambah.php">Tambah Buku</a> | 
+        <a href="anggota.php">Manajemen Anggota</a>
     </p>
 
+    <h2>Daftar Buku</h2>
     <table border="1" cellpadding="8">
         <thead>
             <tr>
@@ -50,40 +51,16 @@ $semuaBuku = $buku->semua();
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($semuaBuku as $buku): ?>
+            <?php foreach ($semuaBuku as $b): ?>
                 <tr>
-                    <td><?= $buku['id']?></td>
-                    <td><?= $buku['judul']?></td>
-                    <td><?= $buku['penulis']?></td>
-                    <td><?= $buku['tahun']?></td>
-                    <td><?= $buku['stok']?></td>
+                    <td><?= htmlspecialchars($b['id']) ?></td>
+                    <td><?= htmlspecialchars($b['judul']) ?></td>
+                    <td><?= htmlspecialchars($b['penulis']) ?></td>
+                    <td><?= htmlspecialchars($b['tahun']) ?></td>
+                    <td><?= htmlspecialchars($b['stok']) ?></td>
                 </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
-        
-        <h2>Buku Andrea Hirata</h2>
-        <table border="1" cellpadding="8">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Judul</th>
-                    <th>Penulis</th>
-                    <th>Tahun</th>
-                    <th>Stok</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php // foreach ($bukuAndrea as $buku): ?>
-                    <tr>
-                        <td><?= $buku['id']?></td>
-                        <td><?= $buku['judul']?></td>
-                        <td><?= $buku['penulis']?></td>
-                        <td><?= $buku['tahun']?></td>
-                        <td><?= $buku['stok']?></td>
-                    </tr>
-                <?php // endforeach ?>
-            </tbody>
-        </table>
-    </body>
-    </html>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+</body>
+</html>
