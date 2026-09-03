@@ -51,12 +51,13 @@ $semuaAnggota = $anggota->semua();
                 <th>Alamat</th>
                 <th>No. Telepon</th>
                 <th>Tanggal Daftar</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
             <?php if (empty($semuaAnggota)): ?>
                 <tr>
-                    <td colspan="7" style="text-align: center;">Belum ada data anggota.</td>
+                    <td colspan="8" style="text-align: center;">Belum ada data anggota.</td>
                 </tr>
             <?php else: ?>
                 <?php foreach ($semuaAnggota as $a): ?>
@@ -68,6 +69,10 @@ $semuaAnggota = $anggota->semua();
                         <td><?= htmlspecialchars($a['alamat']) ?></td>
                         <td><?= htmlspecialchars($a['no_telepon']) ?></td>
                         <td><?= htmlspecialchars($a['tanggal_daftar']) ?></td>
+                        <td>
+                            <a href="edit_anggota.php?id=<?= $a['id'] ?>&anggota=<?= $a['nama_lengkap']?>"><button type="button">Edit</button></a>
+                            <a href="hapus_anggota.php?id=<?= $a['id'] ?>&anggota=<?= $a['nama_lengkap']?>" onclick="return confirm('Apakah Anda yakin ingin menghapus anggota <?= htmlspecialchars($a['nama_lengkap'], ENT_QUOTES) ?>?')"><button type="button">Hapus</button></a>
+                        </td>
                     </tr>
                 <?php endforeach ?>
             <?php endif; ?>

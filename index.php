@@ -61,7 +61,7 @@ $semuaBuku = $buku->semua();
                     <td><?= htmlspecialchars($b['stok']) ?></td>
                     <td>
                         <a href="edit.php?id=<?= $b['id'] ?>&judul=<?= $b['judul']?>"><button type="button">Edit</button></a>
-                        <a href="hapus.php?id=<?= $b['id'] ?>&judul=<?= $b['judul']?>"><button type="button">Hapus</button></a>
+                        <a href="hapus.php?id=<?= $b['id'] ?>&judul=<?= urlencode($b['judul']) ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus buku <?= htmlspecialchars($b['judul'], ENT_QUOTES) ?>?')"><button type="button">Hapus</button></a>
                     </td>
                 </tr>
             <?php endforeach ?>
