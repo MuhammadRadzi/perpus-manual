@@ -58,4 +58,12 @@ class Buku {
         $buku = $stmt->fetch(PDO::FETCH_ASSOC);
         return $buku ?: null;
     }
+
+    public function hapus (int $id) {
+        $stmt = $this->db->prepare(
+            "DELETE FROM buku WHERE id=?"
+        );
+
+        $stmt->execute([$id]);
+    }
 }

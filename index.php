@@ -61,6 +61,7 @@ $semuaBuku = $buku->semua();
                     <td><?= htmlspecialchars($b['stok']) ?></td>
                     <td>
                         <a href="edit.php?id=<?= $b['id'] ?>&judul=<?= $b['judul']?>"><button type="button">Edit</button></a>
+                        <a href="hapus.php?id=<?= $b['id'] ?>&judul=<?= $b['judul']?>"><button type="button">Hapus</button></a>
                     </td>
                 </tr>
             <?php endforeach ?>

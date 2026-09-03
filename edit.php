@@ -20,13 +20,19 @@ $judulBuku = (string) ($_GET['judul'] ?? '');
 
 $dataBuku = $buku->cariBuku($id);
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $judul = $_POST['judul'];
-    $penulis = $_POST['penulis'];
-    $tahun = (int)$_POST['tahun'];
-    $stok = (int)$_POST['stok'];
+if (!$dataBuku) {
+    die('Buku tidak ditemukan');
+    exit;
+}
 
-    $buku->ubah($id, $judul, $penulis, $tahun, $stok);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $buku->ubah(
+        $id,
+        $_POST['judul'],
+        $_POST['penulis'],
+        (int)$_POST['tahun'],
+        (int)$_POST['stok']
+    );
 
     header('Location: index.php');
     exit;
