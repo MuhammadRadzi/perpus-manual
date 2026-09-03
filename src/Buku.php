@@ -37,4 +37,25 @@ class Buku {
             [$judul, $penulis, $tahun, $stok]
         );
     }
+
+    public function ubah (int $id, string $judul, string $penulis, int $tahun, int $stok) {
+        $stmt = $this->db->prepare(
+            "UPDATE buku SET judul=?, penulis=?, tahun=?, stok=? WHERE id=?"
+        );
+
+        $stmt->execute(
+            [$judul, $penulis, $tahun, $stok, $id]
+        );
+    }
+
+    public function cariBuku (int $id) {
+        $stmt = $this->db->prepare(
+            "SELECT * FROM buku WHERE id=?"
+        );
+
+        $stmt->execute([$id]);
+
+        $buku = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $buku ?: null;
+    }
 }

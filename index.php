@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/vendor/autoload.php";
 
 use App\Database;
 use App\Buku;
@@ -35,7 +35,7 @@ $semuaBuku = $buku->semua();
 <body>
     <h1>Perpustakaan</h1>
     <p>
-        <a href="tambah.php">Tambah Buku</a> | 
+        <a href="tambah.php">Tambah Buku</a>
         <a href="anggota.php">Manajemen Anggota</a>
     </p>
 
@@ -48,6 +48,7 @@ $semuaBuku = $buku->semua();
                 <th>Penulis</th>
                 <th>Tahun</th>
                 <th>Stok</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -58,6 +59,9 @@ $semuaBuku = $buku->semua();
                     <td><?= htmlspecialchars($b['penulis']) ?></td>
                     <td><?= htmlspecialchars($b['tahun']) ?></td>
                     <td><?= htmlspecialchars($b['stok']) ?></td>
+                    <td>
+                        <a href="edit.php?id=<?= $b['id'] ?>&judul=<?= $b['judul']?>"><button type="button">Edit</button></a>
+                    </td>
                 </tr>
             <?php endforeach ?>
         </tbody>
